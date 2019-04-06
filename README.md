@@ -1,0 +1,1 @@
+# rubbish-talk-generator

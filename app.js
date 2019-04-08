@@ -5,8 +5,22 @@ const generateTalk = require('./generate_talk')
 const app = express()
 const port = 3000
 
+const hbs = exphbs.create({
+  helpers: {
+    setChecked: function (value, careerValue) {
+      if (value == careerValue) {
+        return 'checked'
+      } else {
+        return ''
+      }
+    }
+  },
+  defaultLayout: 'main',
+})
+
 app.use(express.static('public'))
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }))
+
+app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 app.use(bodyParser.urlencoded({ extended: true }))
 
@@ -15,8 +29,10 @@ app.get('/', (req, res) => {
 })
 
 app.post('/', (req, res) => {
-  const talk = generateTalk(req.body)
-  res.render('index', { talk: talk })
+  const career = req.body
+  const talk = generateTalk(career)
+  console.log('talk', talk, 'career', career)
+  res.render('index', { talk: talk, career: career })
 })
 
 app.listen(port, () => {

@@ -14,15 +14,15 @@ function generateTalk(options) {
 
   let nonsenseTalk = ''
 
-  if (options.option === 'engineer') {
+  if (options.career === 'engineer') {
     nonsenseTalk += '身為一個工程師' + sample(task.engineer)
-  } else if (options.option === 'designer') {
+  } else if (options.career === 'designer') {
     nonsenseTalk += '身為一個設計師' + sample(task.designer)
-  } else if (options.option === 'entrepreneur') {
+  } else if (options.career === 'entrepreneur') {
     nonsenseTalk += '身為一個創業家' + sample(task.entrepreneur)
   }
   nonsenseTalk += sample(phrase)
-  console.log(nonsenseTalk)
+  if (options.career === undefined) nonsenseTalk = '請選擇職業'
   return nonsenseTalk
 }
 module.exports = generateTalk

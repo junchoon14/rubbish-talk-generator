@@ -8,11 +8,7 @@ const port = 3000
 const hbs = exphbs.create({
   helpers: {
     setChecked: function (value, careerValue) {
-      if (value == careerValue) {
-        return 'checked'
-      } else {
-        return ''
-      }
+      return value == careerValue ? 'checked' : ''
     }
   },
   defaultLayout: 'main',
